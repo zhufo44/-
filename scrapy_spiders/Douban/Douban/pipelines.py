@@ -13,15 +13,15 @@ class DoubanPipeline(object):
         port = settings['MONGODB_PORT']
         dbname = settings['MONGODB_DBNAME']
         sheetname = settings['MONGODB_SHEETNAME']
-        #self.filename = open('douban.json','w')        
+        self.filename = open('douban.json','w')        
         
         self.client = pymongo.MongoClient(host=host,port=port)
         self.db = self.client[dbname]
         self.post = self.db[sheetname]
                 
     def process_item(self, item, spider):
-        data = dict(item)
-        self.post.insert(data)
-        #data = json.dumps(dict(item),ensure_ascii=False)+'\n'
-        #self.filename.write(data)
+        #data = dict(item)
+        #self.post.insert(data)
+        data = json.dumps(dict(item),ensure_ascii=False)+'\n'
+        self.filename.write(data)
         return item

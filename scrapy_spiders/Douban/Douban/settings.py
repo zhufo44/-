@@ -55,11 +55,27 @@ COOKIES_ENABLED = False
 #    'Douban.middlewares.DoubanSpiderMiddleware': 543,
 #}
 
+Useragents = [
+        
+            'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36 OPR/26.0.1656.60', 
+            'Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 9.50', 
+            'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 9.50',
+            'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Maxthon/4.4.3.4000 Chrome/30.0.1599.101 Safari/537.36',
+            'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 UBrowser/4.0.3214.0 Safari/537.36',
+        ]
+
+Proxies = [
+        {'ip_port':'101.236.35.98:8866','user_passwd':''}
+        
+        
+        ]
+
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'Douban.middlewares.DoubanDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'Douban.middlewares.RandomUseragentMiddleware': 100,
+    'Douban.middlewares.RandomProxyMiddleware':200,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
